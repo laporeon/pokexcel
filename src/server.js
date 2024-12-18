@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 
-import { readFileData } from './libs/read-excel-file.js';
+import { convertXLSXToJSON } from './libs/xlsx.js';
 
 const port = 3000 || process.env.PORT;
 
@@ -14,7 +14,7 @@ app.get('/', (_, response) => {
 });
 
 app.get('/pokemons', async (_, response) => {
-  const data = await readFileData;
+  const data = await convertXLSXToJSON();
   response.json({ data });
 });
 
