@@ -14,11 +14,9 @@ const inputFilePath = path.resolve(
   'pokemondata.xlsx',
 );
 
-export const convertXLSXToJSON = () => {
-  const spreadSheet = xlsx.readFile(inputFilePath);
-  const data = xlsx.utils
-    .sheet_to_json(spreadSheet.Sheets['Sheet1'], { header: 1 })
-    .slice(1);
+export const getPokemonDataFromExcelFile = () => {
+  const spreadSheet = xlsx.readFile(inputFilePath, { cellDates: true });
+  const data = xlsx.utils.sheet_to_json(spreadSheet.Sheets['Sheet1']);
 
   return data;
 };
