@@ -1,21 +1,17 @@
 import 'dotenv/config';
 import express from 'express';
 
-import { convertXLSXToJSON } from './libs/xlsx.js';
+import { pokemonRoutes } from './routes/pokemon.route.js';
 
 const port = 3000 || process.env.PORT;
 
 const app = express();
 
 app.use(express.json());
+app.use('/pokemons', pokemonRoutes);
 
 app.get('/', (_, response) => {
   response.json({ message: 'Welcome to PokeAPI!' });
-});
-
-app.get('/pokemons', async (_, response) => {
-  const data = await convertXLSXToJSON();
-  response.json({ data });
 });
 
 app.listen(port, () => {
