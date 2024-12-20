@@ -11,6 +11,29 @@ export class PokemonController {
     return response.status(200).json({ pokemons });
   }
 
+  async getOneOrManyByNameOrAttributes(request, response) {
+    const { name, type } = request.query;
+
+    let where = {};
+
+    if (name) {
+      where.name = name;
+    }
+
+    if (type) {
+      where.OR = [{ type_1: type }, { type_2: type }];
+    }
+
+    const pokemons = await prisma.pokemon.findMany({
+      where,
+    });
+
+    if (!pokemons)
+      return response.status(404).json({ error: 'Resource not found.' });
+
+    return response.status(200).json({ pokemons });
+  }
+
   async bulkCreate(request, response) {
     const hasData = await prisma.pokemon.findMany({});
 
