@@ -6,6 +6,7 @@ const pokemonController = new PokemonController();
 
 const routes = Router();
 
+routes.get('/:name?/:type?', pokemonController.getOneOrManyByNameOrAttributes);
 routes.get('/', pokemonController.getAll);
 routes.post('/', pokemonController.bulkCreate);
 
