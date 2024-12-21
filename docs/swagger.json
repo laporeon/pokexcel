@@ -1,0 +1,329 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pokedex API",
+    "description": "Challenged provided by @ RedFoxTech",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "schemes": ["https", "http"],
+  "components": {},
+  "paths": {
+    "/pokemons": {
+      "get": {
+        "tags": ["Pokemon"],
+        "summary": "List Pokemons",
+        "description": "Retrieves all Pokémons or Retrieve Pokémons by filter (e.g name, type)",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The name of the Pokémon.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "The type of the Pokémon (e.g., fire, water).",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pokemons": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "pokedex_number": {
+                            "type": "number"
+                          },
+                          "img_name": {
+                            "oneOf": [
+                              { "type": "string" },
+                              { "type": "integer", "format": "int64" }
+                            ],
+                            "description": "Can be either a string or an ID."
+                          },
+                          "generation": {
+                            "type": "number"
+                          },
+                          "evolution_stage": {
+                            "oneOf": [
+                              { "type": "string" },
+                              { "type": "integer", "format": "int64" }
+                            ],
+                            "description": "Can be either a string or an ID.",
+                            "required": "false"
+                          },
+                          "evolved": {
+                            "type": "number"
+                          },
+                          "familyid": {
+                            "type": "number",
+                            "required": false
+                          },
+                          "cross_gen": {
+                            "type": "number"
+                          },
+                          "type_1": {
+                            "type": "string"
+                          },
+                          "type_2": {
+                            "type": "string",
+                            "required": false
+                          },
+                          "weather_1": {
+                            "type": "string"
+                          },
+                          "weather_2": {
+                            "type": "string",
+                            "required": false
+                          },
+                          "stat_total": {
+                            "type": "integer"
+                          },
+                          "atk": {
+                            "type": "integer"
+                          },
+                          "def": {
+                            "type": "integer"
+                          },
+                          "sta": {
+                            "type": "integer"
+                          },
+                          "legendary": {
+                            "type": "integer"
+                          },
+                          "aquireable": {
+                            "type": "integer"
+                          },
+                          "spawns": {
+                            "type": "integer"
+                          },
+                          "regional": {
+                            "type": "integer"
+                          },
+                          "raidable": {
+                            "type": "integer"
+                          },
+                          "hatchable": {
+                            "type": "integer"
+                          },
+                          "shiny": {
+                            "type": "integer"
+                          },
+                          "nest": {
+                            "type": "integer"
+                          },
+                          "new": {
+                            "type": "integer"
+                          },
+                          "not_gettable": {
+                            "type": "integer"
+                          },
+                          "future_evolve": {
+                            "type": "integer"
+                          },
+                          "cp_40": {
+                            "type": "integer"
+                          },
+                          "cp_39": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "type": "date"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Pokemon"],
+        "summary": "Create Pokemon Data",
+        "description": "Imports Pokemond data from excel file and saves to PostgreSQL database.",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pokemons": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "pokedex_number": {
+                            "type": "number"
+                          },
+                          "img_name": {
+                            "oneOf": [
+                              { "type": "string" },
+                              { "type": "integer", "format": "int64" }
+                            ],
+                            "description": "Can be either a string or an ID."
+                          },
+                          "generation": {
+                            "type": "number"
+                          },
+                          "evolution_stage": {
+                            "oneOf": [
+                              { "type": "string" },
+                              { "type": "integer", "format": "int64" }
+                            ],
+                            "description": "Can be either a string or an ID.",
+                            "required": "false"
+                          },
+                          "evolved": {
+                            "type": "number"
+                          },
+                          "familyid": {
+                            "type": "number",
+                            "required": false
+                          },
+                          "cross_gen": {
+                            "type": "number"
+                          },
+                          "type_1": {
+                            "type": "string"
+                          },
+                          "type_2": {
+                            "type": "string",
+                            "required": false
+                          },
+                          "weather_1": {
+                            "type": "string"
+                          },
+                          "weather_2": {
+                            "type": "string",
+                            "required": false
+                          },
+                          "stat_total": {
+                            "type": "integer"
+                          },
+                          "atk": {
+                            "type": "integer"
+                          },
+                          "def": {
+                            "type": "integer"
+                          },
+                          "sta": {
+                            "type": "integer"
+                          },
+                          "legendary": {
+                            "type": "integer"
+                          },
+                          "aquireable": {
+                            "type": "integer"
+                          },
+                          "spawns": {
+                            "type": "integer"
+                          },
+                          "regional": {
+                            "type": "integer"
+                          },
+                          "raidable": {
+                            "type": "integer"
+                          },
+                          "hatchable": {
+                            "type": "integer"
+                          },
+                          "shiny": {
+                            "type": "integer"
+                          },
+                          "nest": {
+                            "type": "integer"
+                          },
+                          "new": {
+                            "type": "integer"
+                          },
+                          "not_gettable": {
+                            "type": "integer"
+                          },
+                          "future_evolve": {
+                            "type": "integer"
+                          },
+                          "cp_40": {
+                            "type": "integer"
+                          },
+                          "cp_39": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "type": "date"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
