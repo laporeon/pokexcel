@@ -4,12 +4,16 @@ import { getPokemonDataFromExcelFile } from '../utils/readPokemonData.js';
 
 export class PokemonController {
   async get(request, response) {
-    const { name, type } = request.query;
+    const { name, pokedex_number, type } = request.query;
 
     let where = {};
 
     if (name) {
       where.name = name;
+    }
+
+    if (pokedex_number) {
+      where.pokedex_number = Number(pokedex_number);
     }
 
     if (type) {
