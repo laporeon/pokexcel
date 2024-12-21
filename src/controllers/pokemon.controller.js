@@ -3,13 +3,7 @@ import { pokeData } from '../utils/normalizeData.js';
 import { getPokemonDataFromExcelFile } from '../utils/readPokemonData.js';
 
 export class PokemonController {
-  async getAll(request, response) {
-    const pokemons = await prisma.pokemon.findMany();
-
-    return response.status(200).json({ pokemons });
-  }
-
-  async getOneOrManyByNameOrAttributes(request, response) {
+  async get(request, response) {
     const { name, type } = request.query;
 
     let where = {};
