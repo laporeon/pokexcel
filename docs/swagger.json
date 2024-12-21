@@ -13,7 +13,7 @@
       "get": {
         "tags": ["Pokemon"],
         "summary": "List Pokemons",
-        "description": "Retrieves all Pokémons or Retrieve Pokémons by filter (e.g name, type)",
+        "description": "Retrieves all Pokémons or Retrieve Pokémons by filter (e.g name, type or pokedex_number)",
         "parameters": [
           {
             "name": "name",
@@ -31,6 +31,15 @@
             "required": false,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "pokedex_number",
+            "in": "query",
+            "description": "The pokedex number of the Pokémon.",
+            "required": false,
+            "schema": {
+              "type": "number"
             }
           }
         ],
@@ -180,7 +189,7 @@
       "post": {
         "tags": ["Pokemon"],
         "summary": "Create Pokemon Data",
-        "description": "Imports Pokemond data from excel file and saves to PostgreSQL database.",
+        "description": "Imports Pokemon data from excel file and saves to PostgreSQL database.",
         "responses": {
           "201": {
             "description": "Created",
