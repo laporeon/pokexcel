@@ -170,7 +170,7 @@
             }
           },
           "404": {
-            "description": "Conflict",
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
