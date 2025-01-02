@@ -332,6 +332,17 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Pokemon"],
+        "summary": "Delete Pokemons",
+        "description": "Alternative route to bulk delete all Pokemons stored at database.",
+        "responses": {
+          "204": {
+            "description": "No Body",
+            "content": {}
+          }
+        }
       }
     }
   }
