@@ -1,6 +1,6 @@
 import { prisma } from '../libs/prisma.js';
+import { logger } from '../utils/logger.js';
 import { pokeData } from '../utils/normalizeData.js';
-
 export class PokemonController {
   async get(request, response) {
     const { name, pokedex_number, type } = request.query;
@@ -26,6 +26,12 @@ export class PokemonController {
     if (!pokemons)
       return response.status(404).json({ error: 'Resource not found.' });
 
+    logger.info({
+      url: request.originalUrl,
+      method: request.method,
+      messsage: `${pokemons.length} pokemons were found.`,
+    });
+
     return response.status(200).json({ pokemons });
   }
 
@@ -33,6 +39,12 @@ export class PokemonController {
     const hasData = await prisma.pokemon.findMany({});
 
     if (hasData.length !== 0) {
+      logger.error({
+        url: request.originalUrl,
+        method: request.method,
+        error: 'Excel data was already imported and stored at database.',
+      });
+
       return response.status(409).json({
         error: 'Excel data was already imported and stored at database.',
       });
@@ -45,6 +57,12 @@ export class PokemonController {
       const createdPokemon = await prisma.pokemon.create({ data: pokemon });
       pokemons.push(createdPokemon);
     }
+
+    logger.info({
+      url: request.originalUrl,
+      method: request.method,
+      messsage: `${pokemons.length} pokemons were imported from spreadsheet and stored at database.`,
+    });
 
     return response.status(201).json({ pokemons });
   }
