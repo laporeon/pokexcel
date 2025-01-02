@@ -66,4 +66,19 @@ export class PokemonController {
 
     return response.status(201).json({ pokemons });
   }
+
+  // Just in case you need to clean up the database and import the data again
+  async bulkDelete(request, response) {
+    const pokemons = await prisma.pokemon.findMany({});
+
+    await prisma.pokemon.deleteMany({});
+
+    logger.info({
+      url: request.originalUrl,
+      method: request.method,
+      messsage: `${pokemons.length} pokemons were deleted from database.`,
+    });
+
+    return response.status(204).json({});
+  }
 }
