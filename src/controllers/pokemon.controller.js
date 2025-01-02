@@ -1,6 +1,5 @@
 import { prisma } from '../libs/prisma.js';
 import { pokeData } from '../utils/normalizeData.js';
-import { getPokemonDataFromExcelFile } from '../utils/readPokemonData.js';
 
 export class PokemonController {
   async get(request, response) {
