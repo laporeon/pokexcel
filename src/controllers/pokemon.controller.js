@@ -1,6 +1,7 @@
 import { prisma } from '../libs/prisma.js';
 import { logger } from '../utils/logger.js';
 import { pokeData } from '../utils/normalizeData.js';
+
 export class PokemonController {
   async get(request, response) {
     const { name, pokedex_number, type } = request.query;
