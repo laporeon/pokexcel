@@ -5,22 +5,14 @@ export class PokemonController {
   async get(request, response) {
     const { name, pokedex_number, type } = request.query;
 
-    let where = {};
-
-    if (name) {
-      where.name = name;
-    }
-
-    if (pokedex_number) {
-      where.pokedex_number = Number(pokedex_number);
-    }
-
-    if (type) {
-      where.OR = [{ type_1: type }, { type_2: type }];
-    }
-
     const pokemons = await prisma.pokemon.findMany({
-      where,
+      where: {
+        ...(name && { name }),
+        ...(pokedex_number && { pokedex_number: Number(pokedex_number) }),
+        ...(type && {
+          OR: [{ type_1: type }, { type_2: type }],
+        }),
+      },
     });
 
     if (!pokemons)
