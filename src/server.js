@@ -1,18 +1,16 @@
-import { createServer } from 'node:http';
+import 'dotenv/config';
+import express from 'express';
+
+import routes from './routes/index.js';
+import { logger } from './utils/logger.js';
 
 const port = 3000 || process.env.PORT;
 
-const server = createServer((req, res) => {
-  res.writeHead(200, {
-    'Content-Type': 'application/json',
-  });
-  res.end(
-    JSON.stringify({
-      message: 'Hello World!',
-    }),
-  );
-});
+const app = express();
 
-server.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+app.use(express.json());
+app.use(routes);
+
+app.listen(port, () => {
+  logger.info(`Server is running at http://localhost:${port}`);
 });
