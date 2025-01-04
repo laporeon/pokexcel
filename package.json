@@ -1,5 +1,5 @@
 {
-  "name": "backend-test-redfoxtech",
+  "name": "pokexcel",
   "version": "1.0.0",
   "main": "./src/server.js",
   "type": "module",
@@ -7,7 +7,8 @@
     "start": "node --watch ./src/server.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --config .prettierrc --write src/**"
+    "format": "prettier --config .prettierrc --write src/**",
+    "prisma:migrate": "npx prisma migrate dev"
   },
   "keywords": [],
   "author": "",
