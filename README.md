@@ -82,4 +82,4 @@ $ npm start
 | `/pokemons`      |     GET     | `name`, `type` and `pokedex_number` as _optional_ query parameters | Retrieves Pokemons. Returns all or filters by query parameters. |
 | `/pokemons`      |   DELETE    |                                 -                                  |          Bulk delete all Pokemons stored at database.           |
 
-[⬆ Back to the top](#--weatherish)
+[⬆ Back to the top](#--pokexcel---redfoxtech)
