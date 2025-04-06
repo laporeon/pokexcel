@@ -11,7 +11,7 @@ const inputFilePath = path.resolve(
   '..',
   '..',
   'assets',
-  'pokemondata.xlsx',
+  'pokemondata.xlsx'
 );
 
 export const getPokemonDataFromExcelFile = () => {

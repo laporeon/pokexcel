@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "start": "node --watch ./src/server.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --config .prettierrc --write src/**",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --fix --ext .js",
+    "format": "prettier --config .prettierrc --write src/**/*.js",
+    "format:check": "prettier --check src/**/*.js",
     "prisma:migrate": "npx prisma migrate dev"
   },
   "keywords": [],
@@ -16,8 +17,8 @@
   "devDependencies": {
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-import-helpers": "^2.0.1",
     "eslint-plugin-prettier": "^5.2.4",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "prettier": "^3.5.3",
     "prisma": "^6.5.0"
   },

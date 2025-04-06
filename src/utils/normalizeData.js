@@ -12,6 +12,6 @@ const pokemonsData = getPokemonDataFromExcelFile();
 export const pokeData = pokemonsData.map(pokemon => {
   const { Row, ...data } = pokemon;
   return Object.fromEntries(
-    Object.entries(data).map(([key, value]) => [normalizeKey(key), value]),
+    Object.entries(data).map(([key, value]) => [normalizeKey(key), value])
   );
 });
